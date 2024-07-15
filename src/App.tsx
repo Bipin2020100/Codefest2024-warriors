@@ -48,6 +48,7 @@ const NavItem = styled(NavLink)(({ theme }) => ({
   margin: theme.spacing(2),
   padding: theme.spacing(2),
   display: 'flex',
+  height:'25px',
   alignItems: 'center',
   cursor: 'pointer',
   textDecoration: 'none',
@@ -75,10 +76,12 @@ const FolderItem = styled('div')(({ theme }) => ({
 }));
 
 const FutureDevelopment = () => (
+  <Paper sx={{ padding: 2, backgroundColor: '#f5f5f5', height: '410%' }}>
   <Box sx={{ padding: 4, textAlign: 'center' }}>
-    <ConstructionIcon sx={{ fontSize: 80, color: 'grey.500', marginBottom: 2 }} />
-    <Typography variant="h4">Future Development: Work in Progress</Typography>
+    <ConstructionIcon sx={{ fontSize: 80, color: 'primary.main', marginBottom: 2 }} />
+    <Typography variant="h4" sx={{ marginRight: 1, fontWeight:'Bold', color: 'primary.main', fontSize: 30 }}>Future Development: Work in Progress</Typography>
   </Box>
+  </Paper>
 );
 
 const App = () => {
@@ -152,21 +155,21 @@ const App = () => {
                     <PDFReader />
                     <Box sx={{ marginTop: 4 }}>
                       <FolderArea>
-                        <Typography variant="body1">My Folders:</Typography>
                         <FolderItem>
-                          <FolderIcon sx={{ marginRight: 1, color: 'primary.main', fontSize: 40 }} />
+                        <Typography variant="body1">My Folders:</Typography>
+                          <FolderIcon sx={{ marginLeft: 2,marginRight: 1, color: 'grey', fontSize: 40 }} />
                           <Typography variant="body1">Folder 1</Typography>
                         </FolderItem>
                         <FolderItem>
-                          <FolderIcon sx={{ marginRight: 1, color: 'primary.main', fontSize: 40 }} />
+                          <FolderIcon sx={{ marginRight: 1, color: 'grey', fontSize: 40 }} />
                           <Typography variant="body1">Folder 2</Typography>
                         </FolderItem>
                         <FolderItem>
-                          <FolderIcon sx={{ marginRight: 1, color: 'primary.main', fontSize: 40 }} />
+                          <FolderIcon sx={{ marginRight: 1, color: 'grey', fontSize: 40 }} />
                           <Typography variant="body1">Folder 3</Typography>
                         </FolderItem>
                         <FolderItem>
-                          <FolderIcon sx={{ marginRight: 1, color: 'primary.main', fontSize: 40 }} />
+                          <FolderIcon sx={{ marginRight: 1, color: 'grey', fontSize: 40 }} />
                           <Typography variant="body1">Folder 4</Typography>
                         </FolderItem>
                       </FolderArea>
