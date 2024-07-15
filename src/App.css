@@ -48,3 +48,8 @@
     margin-right: 10px;
   }
 }
+
+.file-upload-form {
+  width: 200px;
+  justify-content: start;
+}
