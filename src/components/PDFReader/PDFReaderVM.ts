@@ -1,10 +1,11 @@
 import { makeAutoObservable } from "mobx";
-import { PDFDocument, PDFField } from "pdf-lib";
+import { PDFDocument, PDFField, PDFForm } from "pdf-lib";
 
 // PDF manipulation here
 export class PDFReaderVM {
   pdfFile: File | undefined = undefined;
-  textFields: ITextFields[] = [];
+  inputFields: IInputFields[] = [];
+
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
@@ -22,50 +23,51 @@ export class PDFReaderVM {
     const pdfDoc = await PDFDocument.load(await this.pdfFile.arrayBuffer());
     const form = pdfDoc.getForm();
     const fields = form.getFields();
+    this.inputFields = [];
     fields.forEach((field) => {
       const type = field.constructor.name;
       const name = field.getName();
       let value: any = undefined;
       switch (type) {
         case "PDFCheckBox":
-          value = this.valueFromCheckbox(field);
+          value = this.valueFromCheckbox(form, name);
           break;
         case "PDFTextField":
-          value = this.valueFromText(field);
+          value = this.valueFromText(form, name);
           break;
         case "PDFDropdown":
-          value = this.valueFromDropdown(field);
+          value = this.valueFromDropdown(form, name);
           break;
       }
-      console.log(`${type}: ${name}`);
+      this.inputFields.push({
+        name: name,
+        vName: name.replace('\t', ''),
+        type: type,
+        value: value
+      })
     });
-    return;
+    console.log(JSON.parse(JSON.stringify({data: this.inputFields})))
   }
 
-  valueFromCheckbox(field: PDFField) {
+  valueFromCheckbox(form: PDFForm, name: string) {
     // const value = field.getText()
-    return false;
+    const value = form.getCheckBox(name).isChecked();
+    return value;
   }
-  valueFromText(field: PDFField) {
+  valueFromText(form: PDFForm, name: string) {
+    const value = form.getTextField(name).getText();
+    return value;
+  }
+  valueFromDropdown(form: PDFForm, name: string) {
     // field =
-    return false;
+    const value = form.getDropdown(name).getSelected();
+    return value;
   }
-  valueFromDropdown(field: PDFField) {
-    // field =
-    return false;
-  }
-
-  // Quiz 1
-  // async handleFormlessPDF() {
-  //     if (this.pdfFile === undefined) {
-  //         return;
-  //     }
-  //     const pdfDoc = await PDFDocument.load(await this.pdfFile.arrayBuffer());
-  //     const form = pdfDoc.getForm();
-  // }
 }
 
-interface ITextFields {
-  name: "string";
-  value: any;
+interface IInputFields {
+  name: string;
+  vName: string;
+  type: string;
+  value: string | number | boolean;
 }
