@@ -11,9 +11,9 @@ export class PDFReaderVM {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
-  fileSubmitCallback(file: File) {
-    console.log("file Submit Callback with file: ", file.name);
-    this.pdfFile = file;
+  fileSubmitCallback(file: File[]) {
+    console.log("file Submit Callback with file: ", file[0].name);
+    this.pdfFile = file[0];
   }
 
   async handlePDFFormFields() {
@@ -27,6 +27,8 @@ export class PDFReaderVM {
     fields.forEach((field) => {
       const type = field.constructor.name;
       const name = field.getName();
+      console.log(field.acroField);
+      console.log(field.ref)
       let value: any = undefined;
       switch (type) {
         case "PDFCheckBox":
@@ -46,6 +48,7 @@ export class PDFReaderVM {
         value: value
       })
     });
+    console.log(form);
     console.log(JSON.parse(JSON.stringify({data: this.inputFields})))
   }
 

@@ -1,12 +1,13 @@
 import { isObservable, makeAutoObservable } from "mobx"
 
 export interface IFileUploadProps {
-    fileCallback: (file: File) => void;
+    fileCallback: (file: File[]) => void;
+    multi?: boolean;
 }
 
 // Just the form for uploading files
 export class FileUploadVM {
-    pdfFile: File | undefined = undefined;
+    pdfFile: File[] | undefined = undefined;
     props: IFileUploadProps;
     constructor(props: IFileUploadProps) {
         makeAutoObservable(this, {}, { autoBind: true })
@@ -15,7 +16,7 @@ export class FileUploadVM {
     }
 
     handleFileChange(event: any) {
-        this.pdfFile = event.target.files[0];
+        this.pdfFile = event.target.files;
     }
     
     handleSubmit(event: any) {
@@ -25,7 +26,7 @@ export class FileUploadVM {
             console.log('No File Submitted')
         }
         else {
-            console.log(`submitted file - ${this.pdfFile.name}`);
+            console.log(`submitted file - ${this.pdfFile.length}`);
             this.props.fileCallback(this.pdfFile);
         }
     }
