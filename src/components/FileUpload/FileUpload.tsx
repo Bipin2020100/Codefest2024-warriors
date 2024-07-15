@@ -11,7 +11,7 @@ const DottedTextArea = styled('div')(({ theme }) => ({
   padding: theme.spacing(2),
   textAlign: 'center',
   width: '100%',
-  height: '100px',
+  height: '180px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -43,6 +43,9 @@ export const FileUpload = observer((props: IFileUploadProps & { sx?: any }) => {
           style={{ display: 'none' }}
         />
         <label htmlFor="file-upload">
+          <Box>
+          <UploadFileIcon sx={{ marginRight: 1, color: 'primary.main', fontSize: 80, marginBottom: 1}} />
+          </Box>
           <Button variant="contained" color="primary" component="span" sx={{ width: 200 }}>
             Choose File
           </Button>
