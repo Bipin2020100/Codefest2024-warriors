@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.file-up-area {
+  width: fit-content;
+  height: fit-content;
+
+  input {
+    border: 1px dashed black;
+    border-radius: 10px;
+    width: fit-content;
+    height: 3rem;
+    align-content: center;
+    justify-content: center;
+  } 
+}
