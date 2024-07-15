@@ -1,12 +1,12 @@
 import { isObservable, makeAutoObservable } from "mobx"
 
 export interface IFileUploadProps {
-    fileCallback: (file: any) => void;
+    fileCallback: (file: File) => void;
 }
 
 // Just the form for uploading files
 export class FileUploadVM {
-    pdfFile: any = undefined;
+    pdfFile: File | undefined = undefined;
     props: IFileUploadProps;
     constructor(props: IFileUploadProps) {
         makeAutoObservable(this, {}, { autoBind: true })

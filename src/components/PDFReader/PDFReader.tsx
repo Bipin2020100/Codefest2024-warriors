@@ -9,6 +9,9 @@ const PDFReaderComponent = () => {
     return(
         <div>
             <FileUpload fileCallback={vm.fileSubmitCallback}/>
+            <button onClick={vm.handlePDFFormFields} disabled={vm.pdfFile === undefined}>Handle PDF with Form Fields</button>
+            {/* <button onClick={vm.handleFormlessPDF} disabled={vm.pdfFile === undefined}>Handle PDF</button> */}
+            
         </div>
     )
 }
