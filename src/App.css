@@ -38,15 +38,18 @@
 }
 
 .file-up-area {
+  border: 1px dashed black;
+  border-radius: 10px;
   width: fit-content;
-  height: fit-content;
+  height: 3rem;
+  align-content: center;
+  justify-content: center;
+  .file-label {
+    margin-right: 10px;
+  }
+}
 
-  input {
-    border: 1px dashed black;
-    border-radius: 10px;
-    width: fit-content;
-    height: 3rem;
-    align-content: center;
-    justify-content: center;
-  } 
+.file-upload-form {
+  width: 200px;
+  justify-content: start;
 }
