@@ -41,6 +41,7 @@ export const FileUpload = observer((props: IFileUploadProps & { sx?: any }) => {
           accept=".pdf"
           onChange={handleFileChange}
           style={{ display: 'none' }}
+          multiple={props.multi ? true : false}
         />
         <label htmlFor="file-upload">
           <Box>

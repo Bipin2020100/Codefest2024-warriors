@@ -5,6 +5,8 @@ import { styled, alpha } from '@mui/material/styles';
 import { BrowserRouter as Router, Route, Routes, NavLink } from 'react-router-dom';
 import { PDFReader } from './components/PDFReader/PDFReader';
 import ConstructionIcon from '@mui/icons-material/Construction';
+import { FileUpload } from './components/FileUpload/FileUpload';
+import { Grading } from './components/Grading/Grading';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -152,7 +154,7 @@ const App = () => {
                         <MenuItem value="size">Size</MenuItem>
                       </Select>
                     </Box>
-                    <PDFReader />
+                    <FileUpload fileCallback={(File: any) => {}} />
                     <Box sx={{ marginTop: 4 }}>
                       <FolderArea>
                         <FolderItem>
@@ -179,6 +181,28 @@ const App = () => {
               />
               <Route path="/folders" element={<FutureDevelopment />} />
               <Route path="/files" element={<FutureDevelopment />} />
+              <Route path="/grading" element={<Paper sx={{ padding: 2, backgroundColor: '#f5f5f5', height: '250%' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
+                      <Typography variant="h6" sx={{ fontWeight: 'bold', fontFamily: 'Courier New, Courier, monospace' }}>
+                        My Document
+                      </Typography>
+                      <Select
+                        value={sortBy}
+                        onChange={handleSortByChange}
+                        displayEmpty
+                        inputProps={{ 'aria-label': 'Sort by' }}
+                        sx={{ marginLeft: 3, width: 200, height: 40 }}
+                      >
+                        <MenuItem value="" disabled>
+                          Sort by
+                        </MenuItem>
+                        <MenuItem value="date">Date</MenuItem>
+                        <MenuItem value="name">Name</MenuItem>
+                        <MenuItem value="size">Size</MenuItem>
+                      </Select>
+                    </Box>
+                    <Grading />
+                  </Paper>} />
             </Routes>
           </Grid>
         </Grid>
